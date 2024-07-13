@@ -1,9 +1,19 @@
-# love2d_INTRO2
+# untitled fruit-picking game
+stage: **IN DEVELOPMENT**
+</br>
+synopsis: the orchard closes soon! pick as much fruit as you can before time runs out, but watch out for those pesky tomatoes...
 
-in which kim learns about sprite animation with love2d
+## (desired) features
+* game timer
+* point tracking/tallying
+* random fruit (and tomato) generation
+* game states
+* ...
 
-tutorial used: https://www.youtube.com/watch?v=ON7fpPIVtg8&pp=ygUhaG93IHRvIHVzZSBzcHJpdGVzaGVldHMgaW4gbG92ZTJk 
-library used: https://github.com/kikito/anim8https://github.com/kikito/anim8 
+## works cited
+sprite animation tutorial: https://www.youtube.com/watch?v=ON7fpPIVtg8&pp=ygUhaG93IHRvIHVzZSBzcHJpdGVzaGVldHMgaW4gbG92ZTJk
+</br>
+anim8: https://github.com/kikito/anim8https://github.com/kikito/anim8 
 
 <!-- 
 untitled fruit-picking game
