@@ -71,5 +71,9 @@ function love.update(dt)
 end
 
 function love.draw()
+    love.graphics.setColor(37/255, 190/255, 126/255)
+    love.graphics.rectangle('fill', 0, 0, windowX, windowY)
+
+    love.graphics.setColor(1, 1, 1)
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
 end

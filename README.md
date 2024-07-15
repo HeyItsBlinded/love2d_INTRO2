@@ -25,7 +25,7 @@ to-do: larger game window, game window edge detection
 ### 7.14.24
 done: larger game window, game window edge detection
 </br>
-to-do: 
+to-d0: fruit load-in, point system
 <!-- 
 untitled fruit-picking game
 
