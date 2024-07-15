@@ -15,12 +15,17 @@ sprite animation tutorial: https://www.youtube.com/watch?v=ON7fpPIVtg8&pp=ygUhaG
 </br>
 anim8: https://github.com/kikito/anim8https://github.com/kikito/anim8 
 
-## patch notes
+## dev log
 
 ### 7.12.24
 done: player sprite animated, wasd controls
 </br>
 to-do: larger game window, game window edge detection
+
+### 7.14.24
+done: larger game window, game window edge detection
+</br>
+to-do: 
 <!-- 
 untitled fruit-picking game
 

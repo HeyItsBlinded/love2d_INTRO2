@@ -1,4 +1,8 @@
 function love.load()
+    windowX = 1200
+    windowY = 900
+    love.window.setMode(windowX, windowY)
+
     anim8 = require 'anim8'
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
@@ -21,6 +25,20 @@ end
 
 function love.update(dt)
     local isMoving = false
+
+    -- game window edge detection
+    if player.x >= (windowX - 60) then
+        player.x = windowX - 60
+    end
+    if player.x <= 0 then
+        player.x = 0
+    end
+    if player.y >= (windowY - 90) then
+        player.y = windowY - 90
+    end
+    if player.y <= 0 then
+        player.y = 0
+    end
 
     -- wasd controls
     if love.keyboard.isDown("d") then
