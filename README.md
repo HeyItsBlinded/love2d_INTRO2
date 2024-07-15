@@ -27,7 +27,7 @@ done: larger game window, game window edge detection
 </br>
 to-d0: fruit load-in, point system
 
-## 7.15.24
+### 7.15.24
 done: fruit load-in
 </br>
 to-do: 
