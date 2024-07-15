@@ -3,6 +3,10 @@ function love.load()
     windowY = 900
     love.window.setMode(windowX, windowY)
 
+    -- fruit load-in
+    tomatoPNG = love.graphics.newImage('assets/tomato.png')
+
+    -- anim8 load-in
     anim8 = require 'anim8'
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
@@ -10,7 +14,7 @@ function love.load()
     player.x = 400
     player.y = 200
     player.speed = 2
-    player.spriteSheet = love.graphics.newImage('player-sheet.png')
+    player.spriteSheet = love.graphics.newImage('assets/player-sheet.png')
 
     player.grid = anim8.newGrid(12, 18, player.spriteSheet:getWidth(), player.spriteSheet:getHeight())
 
@@ -71,9 +75,15 @@ function love.update(dt)
 end
 
 function love.draw()
+    -- background
     love.graphics.setColor(37/255, 190/255, 126/255)
     love.graphics.rectangle('fill', 0, 0, windowX, windowY)
 
     love.graphics.setColor(1, 1, 1)
+
+    -- fruit(s)
+    love.graphics.draw(tomatoPNG, windowX/2, windowY/2, nil, 2)
+
+    -- player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
 end
