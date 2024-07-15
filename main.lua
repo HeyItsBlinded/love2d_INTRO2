@@ -4,6 +4,9 @@ function love.load()
     love.window.setMode(windowX, windowY)
 
     -- fruit load-in
+    bananaPNG = love.graphics.newImage('assets/banana.png')
+    grapePNG = love.graphics.newImage('assets/grape.png')
+    orangePNG = love.graphics.newImage('assets/orange.png')
     tomatoPNG = love.graphics.newImage('assets/tomato.png')
 
     -- anim8 load-in
@@ -82,7 +85,10 @@ function love.draw()
     love.graphics.setColor(1, 1, 1)
 
     -- fruit(s)
-    love.graphics.draw(tomatoPNG, windowX/2, windowY/2, nil, 2)
+    love.graphics.draw(bananaPNG, 30, 30, nil, 2)
+    love.graphics.draw(grapePNG, 130, 30, nil, 2)
+    love.graphics.draw(orangePNG, 230, 30, nil, 2)
+    love.graphics.draw(tomatoPNG, 330, 30, nil, 2)
 
     -- player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
