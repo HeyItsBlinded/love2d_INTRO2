@@ -109,10 +109,10 @@ function game.checkCollision()
     local playerTop = player.y 
     local playerBottom = player.y + player.height 
 
-    local bananaLeft = bananaX 
-    local bananaRight = bananaX + 65
-    local bananaTop = bananaY
-    local bananaBottom = bananaY + 65
+    local bananaLeft = bananaX + 35
+    local bananaRight = bananaX + 35
+    local bananaTop = bananaY + 35
+    local bananaBottom = bananaY + 35
 
     if (playerRight > bananaLeft) and (playerLeft < bananaRight) and (playerBottom > bananaTop) and (playerTop < bananaBottom) then 
         points = points + 1
