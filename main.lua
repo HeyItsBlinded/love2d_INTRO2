@@ -3,11 +3,17 @@ function love.load()
     windowY = 900
     love.window.setMode(windowX, windowY)
 
+    points = 0
+
     -- fruit load-in
     --[[
     * load in fruit
     * set fruit at random position
     * if fruit position == player position --> move fruit to new random position and add to point total
+    * banana == +1
+    * grape == +3
+    * orange == +5
+    * tomato == -2
     ]]
     bananaPNG = love.graphics.newImage('assets/banana.png')
     grapePNG = love.graphics.newImage('assets/grape.png')
@@ -15,7 +21,7 @@ function love.load()
     tomatoPNG = love.graphics.newImage('assets/tomato.png')
 
     -- sound load-in
-    eatSound = love.audio.newSource('beeep.mp3', 'static')
+    eatSound = love.audio.newSource('assets/beep.mp3', 'static')
 
     -- anim8 load-in
     anim8 = require 'anim8'
@@ -93,11 +99,18 @@ function love.draw()
     love.graphics.setColor(1, 1, 1)
 
     -- fruit(s)
-    -- love.graphics.draw(bananaPNG, 30, 30, nil, 2.5)
+    love.graphics.draw(bananaPNG, 0, 0, nil, 2.5)
     -- love.graphics.draw(grapePNG, 130, 30, nil, 2.5)
     -- love.graphics.draw(orangePNG, 230, 30, nil, 2.5)
     -- love.graphics.draw(tomatoPNG, 330, 30, nil, 2.5)
 
     -- player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
+
+    -- number totals
+    love.graphics.setColor(0, 0, 0)
+    font = love.graphics.newFont(20)
+    love.graphics.setFont(font)
+    love.graphics.print('score: '..points, 10, 10)
+    love.graphics.print('time: '..'PLACEHOLDER', (windowX/2) - 70, 10)
 end
