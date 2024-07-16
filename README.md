@@ -28,7 +28,7 @@ done: larger game window, game window edge detection
 to-d0: fruit load-in, point system
 
 ### 7.15.24
-done: fruit load-in
+done: fruit load-in, shitty ui, and a banana
 </br>
 to-do: 
 
