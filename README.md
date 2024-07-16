@@ -30,7 +30,7 @@ to-d0: fruit load-in, point system
 ### 7.15.24
 done: fruit load-in, shitty ui, and a banana
 </br>
-to-do: 
+to-do: fruit and tomato functionality
 
 <!-- 
 untitled fruit-picking game
