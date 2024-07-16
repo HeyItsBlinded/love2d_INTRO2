@@ -4,18 +4,26 @@ function love.load()
     love.window.setMode(windowX, windowY)
 
     -- fruit load-in
+    --[[
+    * load in fruit
+    * set fruit at random position
+    * if fruit position == player position --> move fruit to new random position and add to point total
+    ]]
     bananaPNG = love.graphics.newImage('assets/banana.png')
     grapePNG = love.graphics.newImage('assets/grape.png')
     orangePNG = love.graphics.newImage('assets/orange.png')
     tomatoPNG = love.graphics.newImage('assets/tomato.png')
+
+    -- sound load-in
+    eatSound = love.audio.newSource('beeep.mp3', 'static')
 
     -- anim8 load-in
     anim8 = require 'anim8'
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     player = {}
-    player.x = 400
-    player.y = 200
+    player.x = (windowX / 2) - 30
+    player.y = (windowY / 2) - 50
     player.speed = 2
     player.spriteSheet = love.graphics.newImage('assets/player-sheet.png')
 
@@ -85,10 +93,10 @@ function love.draw()
     love.graphics.setColor(1, 1, 1)
 
     -- fruit(s)
-    love.graphics.draw(bananaPNG, 30, 30, nil, 2)
-    love.graphics.draw(grapePNG, 130, 30, nil, 2)
-    love.graphics.draw(orangePNG, 230, 30, nil, 2)
-    love.graphics.draw(tomatoPNG, 330, 30, nil, 2)
+    -- love.graphics.draw(bananaPNG, 30, 30, nil, 2.5)
+    -- love.graphics.draw(grapePNG, 130, 30, nil, 2.5)
+    -- love.graphics.draw(orangePNG, 230, 30, nil, 2.5)
+    -- love.graphics.draw(tomatoPNG, 330, 30, nil, 2.5)
 
     -- player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
