@@ -14,6 +14,9 @@ local anim8 = require "anim8"
     * bottom right == windowX - 65, windowY - 65
 ]]
 local bananaX, bananaY
+local grapeX, grapeY
+local orangeX, orangeY
+local tomatoX, tomatoY
 
 function game.load()
     love.window.setMode(windowX, windowY)
@@ -37,8 +40,11 @@ function game.load()
     }
     player.anim = player.animations.down
 
-    -- Initialize bananaX, bananaY
+    -- Initialize fruitX, fruitY
     game.resetBanana()
+    game.resetGrape()
+    game.resetOrange()
+    game.resetTomato()
 end
 
 function game.loadAssets()
@@ -63,11 +69,6 @@ end
 
 function game.handlePlayerMovement(dt)
     local isMoving = false
-
-    -- Scoring
-    if (player.x == bananaX) and (player.y == bananaY) then
-        points = points + 1
-    end
 
     -- Game window edge detection
     if player.x >= (windowX - 60) then player.x = windowX - 60 end
@@ -119,11 +120,59 @@ function game.checkCollision()
         game.eatSound:play()
         game.resetBanana()
     end
+
+    local grapeLeft = grapeX + 35
+    local grapeRight = grapeX + 35
+    local grapeTop = grapeY + 35
+    local grapeBottom = grapeY + 35
+
+    if (playerRight > grapeLeft) and (playerLeft < grapeRight) and (playerBottom > grapeTop) and (playerTop < grapeBottom) then 
+        points = points + 3
+        game.eatSound:play()
+        game.resetGrape()
+    end
+
+    local orangeLeft = orangeX + 35
+    local orangeRight = orangeX + 35
+    local orangeTop = orangeY + 35
+    local orangeBottom = orangeY + 35
+
+    if (playerRight > orangeLeft) and (playerLeft < orangeRight) and (playerBottom > orangeTop) and (playerTop < orangeBottom) then 
+        points = points + 5
+        game.eatSound:play()
+        game.resetOrange()
+    end
+
+    local tomatoLeft = tomatoX + 35
+    local tomatoRight = tomatoX + 35
+    local tomatoTop = tomatoY + 35
+    local tomatoBottom = tomatoY + 35
+
+    if (playerRight > tomatoLeft) and (playerLeft < tomatoRight) and (playerBottom > tomatoTop) and (playerTop < tomatoBottom) then 
+        points = points - 4
+        game.eatSound:play() -- CHANGE OUT
+        game.resetTomato()
+    end
 end
 
 function game.resetBanana()
     bananaX = love.math.random(0, windowX - 65)
     bananaY = love.math.random(0, windowY - 65)
+end
+
+function game.resetGrape()
+    grapeX = love.math.random(0, windowX - 65)
+    grapeY = love.math.random(0, windowY - 65)
+end
+
+function game.resetOrange()
+    orangeX = love.math.random(0, windowX - 65)
+    orangeY = love.math.random(0, windowY - 65)
+end
+
+function game.resetTomato()
+    tomatoX = love.math.random(0, windowX - 65)
+    tomatoY = love.math.random(0, windowY - 65)
 end
 
 function game.draw()
@@ -141,9 +190,9 @@ function game.draw()
     * bottom right == windowX - 65, windowY - 65
     ]]
     love.graphics.draw(fruits.banana, bananaX, bananaY, nil, 2.5)
-    -- love.graphics.draw(fruits.grape, 130, 30, nil, 2.5)
-    -- love.graphics.draw(fruits.orange, 230, 30, nil, 2.5)
-    -- love.graphics.draw(fruits.tomato, 330, 30, nil, 2.5)
+    love.graphics.draw(fruits.grape, grapeX, grapeY, nil, 2.5)
+    love.graphics.draw(fruits.orange, orangeX, orangeY, nil, 2.5)
+    love.graphics.draw(fruits.tomato, tomatoX, tomatoY, nil, 2.5)
 
     -- Draw player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)

@@ -32,6 +32,11 @@ done: fruit load-in, shitty ui, and a banana
 </br>
 to-do: fruit and tomato functionality
 
+### 7.17.24
+done: 
+</br>
+to-do: 
+
 <!-- 
 untitled fruit-picking game
 
