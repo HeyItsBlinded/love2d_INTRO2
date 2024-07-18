@@ -1,11 +1,3 @@
-local game = {}
-
-local windowX, windowY = 1200, 900
-local points = 0
-local player = {}
-local fruits = {}
-local anim8 = require "anim8"
-
 --[[
     SCREEN DIMENSIONS
     * top left == 0, 0
@@ -13,6 +5,15 @@ local anim8 = require "anim8"
     * bottom left == 0, windowY - 65
     * bottom right == windowX - 65, windowY - 65
 ]]
+
+game = {}
+
+windowX, windowY = 1200, 900
+local points = 0
+player = {}
+fruits = {}
+local anim8 = require "anim8"
+
 local bananaX, bananaY
 local grapeX, grapeY
 local orangeX, orangeY
@@ -20,9 +21,6 @@ local tomatoX, tomatoY
 
 function game.load()
     love.window.setMode(windowX, windowY)
-
-    -- Load assets
-    game.loadAssets()
 
     -- Initialize player
     player.x = (windowX / 2) - 30
@@ -45,60 +43,6 @@ function game.load()
     game.resetGrape()
     game.resetOrange()
     game.resetTomato()
-end
-
-function game.loadAssets()
-    -- Load images
-    fruits.banana = love.graphics.newImage('assets/banana.png')
-    fruits.grape = love.graphics.newImage('assets/grape.png')
-    fruits.orange = love.graphics.newImage('assets/orange.png')
-    fruits.tomato = love.graphics.newImage('assets/tomato.png')
-
-    -- Load sounds
-    game.eatSound = love.audio.newSource('assets/beep.mp3', 'static')
-
-    -- Set default filter
-    love.graphics.setDefaultFilter('nearest', 'nearest')
-end
-
-function game.update(dt)
-    game.handlePlayerMovement(dt)
-    player.anim:update(dt)
-    game.checkCollision()
-end
-
-function game.handlePlayerMovement(dt)
-    local isMoving = false
-
-    -- Game window edge detection
-    if player.x >= (windowX - 60) then player.x = windowX - 60 end
-    if player.x <= 0 then player.x = 0 end
-    if player.y >= (windowY - 90) then player.y = windowY - 90 end
-    if player.y <= 0 then player.y = 0 end
-
-    -- WASD controls - allows only one direction at a time
-    if love.keyboard.isDown('d') or love.keyboard.isDown('right') then
-        player.x = player.x + player.speed
-        player.anim = player.animations.right
-        isMoving = true
-    elseif love.keyboard.isDown('a') or love.keyboard.isDown('left') then
-        player.x = player.x - player.speed
-        player.anim = player.animations.left 
-        isMoving = true
-    elseif love.keyboard.isDown('s') or love.keyboard.isDown('down') then
-        player.y = player.y + player.speed
-        player.anim = player.animations.down
-        isMoving = true
-    elseif love.keyboard.isDown('w') or love.keyboard.isDown('up') then
-        player.y = player.y - player.speed
-        player.anim = player.animations.up
-        isMoving = true
-    end
-
-    -- Resting animation
-    if not isMoving then
-        player.anim:gotoFrame(2)
-    end
 end
 
 function game.checkCollision()
@@ -180,12 +124,6 @@ function game.draw()
     love.graphics.setColor(1, 1, 1)
 
     -- Draw fruits
-    --[[
-    * top left == 0
-    * top right == windowX - 65, 0
-    * bottom left == 0, windowY - 65
-    * bottom right == windowX - 65, windowY - 65
-    ]]
     love.graphics.draw(fruits.banana, bananaX, bananaY, nil, 2.5)
     love.graphics.draw(fruits.grape, grapeX, grapeY, nil, 2.5)
     love.graphics.draw(fruits.orange, orangeX, orangeY, nil, 2.5)
