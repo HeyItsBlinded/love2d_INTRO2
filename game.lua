@@ -77,19 +77,19 @@ function game.handlePlayerMovement(dt)
     if player.y <= 0 then player.y = 0 end
 
     -- WASD controls - allows only one direction at a time
-    if love.keyboard.isDown('d') then
+    if love.keyboard.isDown('d') or love.keyboard.isDown('right') then
         player.x = player.x + player.speed
         player.anim = player.animations.right
         isMoving = true
-    elseif love.keyboard.isDown('a') then
+    elseif love.keyboard.isDown('a') or love.keyboard.isDown('left') then
         player.x = player.x - player.speed
         player.anim = player.animations.left 
         isMoving = true
-    elseif love.keyboard.isDown('s') then
+    elseif love.keyboard.isDown('s') or love.keyboard.isDown('down') then
         player.y = player.y + player.speed
         player.anim = player.animations.down
         isMoving = true
-    elseif love.keyboard.isDown('w') then
+    elseif love.keyboard.isDown('w') or love.keyboard.isDown('up') then
         player.y = player.y - player.speed
         player.anim = player.animations.up
         isMoving = true
