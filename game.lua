@@ -45,6 +45,44 @@ function game.load()
     game.resetTomato()
 end
 
+function distance(x1, y1, x2, y2)
+    return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+end
+
+function game.resetBanana()
+    bananaX = love.math.random(0, windowX - 65)
+    bananaY = love.math.random(0, windowY - 65)
+
+end
+
+function game.resetGrape()
+    grapeX = love.math.random(0, windowX - 65)
+    grapeY = love.math.random(0, windowY - 65)
+end
+
+function game.resetOrange()
+    orangeX = love.math.random(0, windowX - 65)
+    orangeY = love.math.random(0, windowY - 65)
+end
+
+function game.resetTomato()
+    tomatoX = love.math.random(0, windowX - 65)
+    tomatoY = love.math.random(0, windowY - 65)
+end
+
+-- fruit overlap/proximity check
+--[[
+function distance(x1, y1, x2, y2)
+    return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+
+if (bananaPos == grapePos) or (bananaPos == orangePos) or (bananaPos == tomatoPos)
+    --> game.resetBanana()
+if (diff(bananaPos, grapePos) < 50) or (diff(bananaPos, orangePos) < 50) or (diff(bananaPos, tomatoPos) < 50)
+    --> game.resetBanana()
+if diff(bananaPos, playerPos) < 50
+    --> game.resetBanana()
+]]
+
 function game.checkCollision()
     local playerLeft = player.x 
     local playerRight = player.x + player.width 
@@ -96,26 +134,6 @@ function game.checkCollision()
     end
 end
 
-function game.resetBanana()
-    bananaX = love.math.random(0, windowX - 65)
-    bananaY = love.math.random(0, windowY - 65)
-end
-
-function game.resetGrape()
-    grapeX = love.math.random(0, windowX - 65)
-    grapeY = love.math.random(0, windowY - 65)
-end
-
-function game.resetOrange()
-    orangeX = love.math.random(0, windowX - 65)
-    orangeY = love.math.random(0, windowY - 65)
-end
-
-function game.resetTomato()
-    tomatoX = love.math.random(0, windowX - 65)
-    tomatoY = love.math.random(0, windowY - 65)
-end
-
 function game.draw()
     -- Background
     love.graphics.setColor(37/255, 190/255, 126/255)
@@ -137,7 +155,6 @@ function game.draw()
     local font = love.graphics.newFont(20)
     love.graphics.setFont(font)
     love.graphics.print('score: ' .. points, 10, 10)
-    -- love.graphics.print('time: ' .. 'PLACEHOLDER', (windowX / 2) - 70, 10)
 end
 
 return game
