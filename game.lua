@@ -91,7 +91,7 @@ function game.checkCollision()
 
     if (playerRight > tomatoLeft) and (playerLeft < tomatoRight) and (playerBottom > tomatoTop) and (playerTop < tomatoBottom) then 
         points = points - 4
-        game.eatSound:play() -- CHANGE OUT
+        game.squishSound:play()
         game.resetTomato()
     end
 end

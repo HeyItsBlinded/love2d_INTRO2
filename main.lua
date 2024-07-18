@@ -8,10 +8,11 @@ function love.load()
 
     -- Load sounds
     game.eatSound = love.audio.newSource('assets/beep.mp3', 'static')
+    game.squishSound = love.audio.newSource('assets/squish.mov', 'static')
 
     -- Set default filter
     love.graphics.setDefaultFilter('nearest', 'nearest')
-    
+
     game.load()
 end
 

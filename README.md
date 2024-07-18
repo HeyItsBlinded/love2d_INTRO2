@@ -33,7 +33,7 @@ done: fruit load-in, shitty ui, and a banana
 to-do: fruit and tomato functionality
 
 ### 7.17.24
-done: 
+done: fruit load-in (actually, for real, including tomatoes)
 </br>
 to-do: 
 
