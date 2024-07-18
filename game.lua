@@ -137,7 +137,7 @@ function game.draw()
     local font = love.graphics.newFont(20)
     love.graphics.setFont(font)
     love.graphics.print('score: ' .. points, 10, 10)
-    love.graphics.print('time: ' .. 'PLACEHOLDER', (windowX / 2) - 70, 10)
+    -- love.graphics.print('time: ' .. 'PLACEHOLDER', (windowX / 2) - 70, 10)
 end
 
 return game

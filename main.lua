@@ -14,6 +14,8 @@ function love.load()
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     game.load()
+
+    startTime = love.timer.getTime()
 end
 
 function love.update(dt)
@@ -51,8 +53,13 @@ function love.update(dt)
 
     player.anim:update(dt)
     game.checkCollision()
+
+    elapsedTime = love.timer.getTime() - startTime
 end
 
 function love.draw()
     game.draw()
+
+    -- love.graphics.print('time: ' .. elapsedTime, (windowX / 2) - 70, 10)
+    love.graphics.print(string.format('time: %.2f', elapsedTime), (windowX / 2) - 70, 10)
 end
