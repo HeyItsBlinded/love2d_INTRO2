@@ -52,6 +52,7 @@ function love.update(dt)
     end
 
     player.anim:update(dt)
+    game.update(dt)
     game.checkCollision()
 
     elapsedTime = love.timer.getTime() - startTime

@@ -8,7 +8,7 @@
 
 game = {}
 
-windowX, windowY = 1200, 900
+windowX, windowY = 1000, 700 -- 1200, 900
 local points = 0
 player = {}
 fruits = {}
@@ -17,7 +17,10 @@ local anim8 = require "anim8"
 local bananaX, bananaY = -100, -100
 local grapeX, grapeY = -100, -100
 local orangeX, orangeY = -100, -100
+
 local tomatoX, tomatoY = -100, -100
+local tomatoSpeed = 100
+local tomatoDirection = 1 -- 1 for right, -1 for left
 
 function game.load()
     love.window.setMode(windowX, windowY)
@@ -73,7 +76,6 @@ end
 
 function game.resetBanana()
     bananaX, bananaY = generateValidCoords()
-
 end
 
 function game.resetGrape()
@@ -88,18 +90,15 @@ function game.resetTomato()
     tomatoX, tomatoY = generateValidCoords()
 end
 
--- fruit overlap/proximity check
---[[
-function distance(x1, y1, x2, y2)
-    return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
+function game.update(dt)
+    tomatoX = tomatoX + tomatoSpeed * tomatoDirection * dt
 
-if (bananaPos == grapePos) or (bananaPos == orangePos) or (bananaPos == tomatoPos)
-    --> game.resetBanana()
-if (diff(bananaPos, grapePos) < 50) or (diff(bananaPos, orangePos) < 50) or (diff(bananaPos, tomatoPos) < 50)
-    --> game.resetBanana()
-if diff(bananaPos, playerPos) < 50
-    --> game.resetBanana()
-]]
+    if tomatoX <= 0 or tomatoX >= windowX - 65 then
+        tomatoDirection = -tomatoDirection
+    end
+
+    game.checkCollision()
+end
 
 function game.checkCollision()
     local playerLeft = player.x 

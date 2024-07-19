@@ -35,7 +35,10 @@ to-do: fruit and tomato functionality
 ### 7.17.24
 done: fruit load-in (actually, for real, including tomatoes)
 </br>
-to-do: 
+to-do: balancing and qol edits
+
+### 7.19.24
+
 
 <!-- 
 untitled fruit-picking game
