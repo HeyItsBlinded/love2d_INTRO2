@@ -14,10 +14,10 @@ player = {}
 fruits = {}
 local anim8 = require "anim8"
 
-local bananaX, bananaY
-local grapeX, grapeY
-local orangeX, orangeY
-local tomatoX, tomatoY
+local bananaX, bananaY = -100, -100
+local grapeX, grapeY = -100, -100
+local orangeX, orangeY = -100, -100
+local tomatoX, tomatoY = -100, -100
 
 function game.load()
     love.window.setMode(windowX, windowY)
@@ -45,29 +45,47 @@ function game.load()
     game.resetTomato()
 end
 
+local minDistance = 100 
+
 function distance(x1, y1, x2, y2)
     return math.sqrt((x2 - x1)^2 + (y2 - y1)^2)
 end
 
+function isTooClose(x1, y1, x2, y2)
+    return distance(x1, y1, x2, y2) < minDistance
+end
+
+function generateValidCoords()
+    local x, y
+    repeat
+        x = love.math.random(0, windowX - 65)
+        y = love.math.random(0, windowY - 65)
+    until not (
+        isTooClose(x, y, player.x, player.y) or
+        isTooClose(x, y, bananaX, bananaY) or
+        isTooClose(x, y, grapeX, grapeY) or
+        isTooClose(x, y, orangeX, orangeY) or
+        isTooClose(x, y, tomatoX, tomatoY)
+    )
+    return x, y 
+
+end
+
 function game.resetBanana()
-    bananaX = love.math.random(0, windowX - 65)
-    bananaY = love.math.random(0, windowY - 65)
+    bananaX, bananaY = generateValidCoords()
 
 end
 
 function game.resetGrape()
-    grapeX = love.math.random(0, windowX - 65)
-    grapeY = love.math.random(0, windowY - 65)
+    grapeX, grapeY = generateValidCoords()
 end
 
 function game.resetOrange()
-    orangeX = love.math.random(0, windowX - 65)
-    orangeY = love.math.random(0, windowY - 65)
+    orangeX, orangeY = generateValidCoords()
 end
 
 function game.resetTomato()
-    tomatoX = love.math.random(0, windowX - 65)
-    tomatoY = love.math.random(0, windowY - 65)
+    tomatoX, tomatoY = generateValidCoords()
 end
 
 -- fruit overlap/proximity check
