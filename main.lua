@@ -6,6 +6,8 @@ function love.load()
     fruits.orange = love.graphics.newImage('assets/orange.png')
     fruits.tomato = love.graphics.newImage('assets/tomato.png')
 
+    tractor = love.graphics.newImage('assets/tractorLEFT.png')
+
     -- Load sounds
     game.eatSound = love.audio.newSource('assets/beep.mp3', 'static')
     game.squishSound = love.audio.newSource('assets/squish.mov', 'static')

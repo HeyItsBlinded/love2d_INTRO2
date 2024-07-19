@@ -18,9 +18,9 @@ local bananaX, bananaY = -100, -100
 local grapeX, grapeY = -100, -100
 local orangeX, orangeY = -100, -100
 
-local tomatoX, tomatoY = -100, -100
-local tomatoSpeed = 100
-local tomatoDirection = 1 -- 1 for right, -1 for left
+-- local tomatoX, tomatoY = -100, -100
+-- local tomatoSpeed = 100
+-- local tomatoDirection = 1 -- 1 for right, -1 for left
 
 function game.load()
     love.window.setMode(windowX, windowY)
@@ -45,7 +45,7 @@ function game.load()
     game.resetBanana()
     game.resetGrape()
     game.resetOrange()
-    game.resetTomato()
+    -- game.resetTomato()
 end
 
 local minDistance = 100 
@@ -67,8 +67,8 @@ function generateValidCoords()
         isTooClose(x, y, player.x, player.y) or
         isTooClose(x, y, bananaX, bananaY) or
         isTooClose(x, y, grapeX, grapeY) or
-        isTooClose(x, y, orangeX, orangeY) or
-        isTooClose(x, y, tomatoX, tomatoY)
+        isTooClose(x, y, orangeX, orangeY) -- or
+        -- isTooClose(x, y, tomatoX, tomatoY)
     )
     return x, y 
 
@@ -86,16 +86,16 @@ function game.resetOrange()
     orangeX, orangeY = generateValidCoords()
 end
 
-function game.resetTomato()
-    tomatoX, tomatoY = generateValidCoords()
-end
+-- function game.resetTomato()
+--     tomatoX, tomatoY = generateValidCoords()
+-- end
 
 function game.update(dt)
-    tomatoX = tomatoX + tomatoSpeed * tomatoDirection * dt
+    -- tomatoX = tomatoX + tomatoSpeed * tomatoDirection * dt
 
-    if tomatoX <= 0 or tomatoX >= windowX - 65 then
-        tomatoDirection = -tomatoDirection
-    end
+    -- if tomatoX <= 0 or tomatoX >= windowX - 65 then
+    --     tomatoDirection = -tomatoDirection
+    -- end
 
     game.checkCollision()
 end
@@ -139,16 +139,16 @@ function game.checkCollision()
         game.resetOrange()
     end
 
-    local tomatoLeft = tomatoX + 35
-    local tomatoRight = tomatoX + 35
-    local tomatoTop = tomatoY + 35
-    local tomatoBottom = tomatoY + 35
+    -- local tomatoLeft = tomatoX + 35
+    -- local tomatoRight = tomatoX + 35
+    -- local tomatoTop = tomatoY + 35
+    -- local tomatoBottom = tomatoY + 35
 
-    if (playerRight > tomatoLeft) and (playerLeft < tomatoRight) and (playerBottom > tomatoTop) and (playerTop < tomatoBottom) then 
-        points = points - 4
-        game.squishSound:play()
-        game.resetTomato()
-    end
+    -- if (playerRight > tomatoLeft) and (playerLeft < tomatoRight) and (playerBottom > tomatoTop) and (playerTop < tomatoBottom) then 
+    --     points = points - 4
+    --     game.squishSound:play()
+    --     game.resetTomato()
+    -- end
 end
 
 function game.draw()
@@ -162,10 +162,13 @@ function game.draw()
     love.graphics.draw(fruits.banana, bananaX, bananaY, nil, 2.5)
     love.graphics.draw(fruits.grape, grapeX, grapeY, nil, 2.5)
     love.graphics.draw(fruits.orange, orangeX, orangeY, nil, 2.5)
-    love.graphics.draw(fruits.tomato, tomatoX, tomatoY, nil, 2.5)
+    -- love.graphics.draw(fruits.tomato, tomatoX, tomatoY, nil, 2.5)
 
     -- Draw player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
+
+    -- Draw tractor
+    love.graphics.draw(tractor, 200, 200, nil, 3.5)
 
     -- Draw score and time
     love.graphics.setColor(0, 0, 0)
