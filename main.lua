@@ -3,7 +3,7 @@ local game = require("game")
 function love.load()
     -- Set default filter
     love.graphics.setDefaultFilter('nearest', 'nearest')
-
+    
     fruits.banana = love.graphics.newImage('assets/banana.png')
     fruits.grape = love.graphics.newImage('assets/grape.png')
     fruits.orange = love.graphics.newImage('assets/orange.png')
@@ -14,11 +14,6 @@ function love.load()
     game.squishSound = love.audio.newSource('assets/squish.mov', 'static')
 
     game.load()
-
-    -- Load the tractor spritesheet
-    tractorSpritesheet = love.graphics.newImage('assets/tractor_sheet.png')
-    local g = anim8.newGrid(25, 25, tractorSpritesheet:getWidth(), tractorSpritesheet:getHeight())
-    animation = anim8.newAnimation(g('1-4', 1), 0.1)
 
     startTime = love.timer.getTime()
 end
@@ -33,19 +28,19 @@ function love.update(dt)
     if player.y <= 0 then player.y = 0 end
 
     -- WASD/arrow key controls - allows only one direction at a time
-    if love.keyboard.isDown('d') or love.keyboard.isDown('right') then
+    if love.keyboard.isDown('d') then
         player.x = player.x + player.speed
         player.anim = player.animations.right
         isMoving = true
-    elseif love.keyboard.isDown('a') or love.keyboard.isDown('left') then
+    elseif love.keyboard.isDown('a') then
         player.x = player.x - player.speed
         player.anim = player.animations.left 
         isMoving = true
-    elseif love.keyboard.isDown('s') or love.keyboard.isDown('down') then
+    elseif love.keyboard.isDown('s') then
         player.y = player.y + player.speed
         player.anim = player.animations.down
         isMoving = true
-    elseif love.keyboard.isDown('w') or love.keyboard.isDown('up') then
+    elseif love.keyboard.isDown('w') then
         player.y = player.y - player.speed
         player.anim = player.animations.up
         isMoving = true
@@ -62,16 +57,20 @@ function love.update(dt)
 
     elapsedTime = love.timer.getTime() - startTime
 
-    -- tractor
-    animation:update(dt)
+    if love.keyboard.isDown('up') then
+        tractorCurrentImg = tractorImg.up
+    elseif love.keyboard.isDown('down') then
+        tractorCurrentImg = tractorImg.down
+    elseif  love.keyboard.isDown('left') then
+        tractorCurrentImg = tractorImg.left
+    elseif love.keyboard.isDown('right') then
+        tractorCurrentImg = tractorImg.right
+    end
 end
 
 function love.draw()
     game.draw()
 
+    love.graphics.setColor(0, 0, 0)
     love.graphics.print(string.format('time: %.2f', elapsedTime), (windowX / 2) - 70, 10)
-
-    -- tractor
-    love.graphics.setColor(1, 1, 1)
-    animation:draw(tractorSpritesheet, 100, 100)
 end

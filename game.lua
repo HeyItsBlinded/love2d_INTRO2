@@ -10,12 +10,9 @@ game = {}
 
 windowX, windowY = 1000, 700 -- 1200, 900
 local points = 0
-
 player = {}
--- tractor = {}
-
 fruits = {}
-anim8 = require "anim8"
+local anim8 = require "anim8"
 
 local bananaX, bananaY = -100, -100
 local grapeX, grapeY = -100, -100
@@ -44,21 +41,13 @@ function game.load()
     }
     player.anim = player.animations.down
 
-    -- -- Initialize tractor
-    -- tractor.x = 0
-    -- tractor.y = 0
-    -- tractor.width = 60
-    -- tractor.height = 90
-    -- tractor.speed = 2
-    -- tractor.spriteSheet = love.graphics.newImage('assets/tractor_sheet.png')
-    -- tractor.grid = anim8.newGrid(25, 25, tractor.spriteSheet:getWidth(), tractor.spriteSheet:getHeight())
-    -- tractor.animations = {
-    --     down = anim8.newAnimation(tractor.grid('1-4', 1), 0.1),
-    --     left = anim8.newAnimation(tractor.grid('1-4', 2), 0.1),
-    --     right = anim8.newAnimation(tractor.grid('1-4', 3), 0.1),
-    --     up = anim8.newAnimation(tractor.grid('1-4', 4), 0.1)
-    -- }
-    -- tractor.anim = tractor.animations.down
+    tractorImg = {
+        up = love.graphics.newImage('assets/tractorUP.png'),
+        down = love.graphics.newImage('assets/tractorDOWN.png'),
+        left = love.graphics.newImage('assets/tractorLEFT.png'),
+        right = love.graphics.newImage('assets/tractorRIGHT.png')
+    }
+    tractorCurrentImg = tractorImg.left
 
     -- Initialize fruitX, fruitY
     game.resetBanana()
@@ -186,14 +175,15 @@ function game.draw()
     -- Draw player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
 
-    -- Draw tractor
-    -- love.graphics.draw(tractor.spriteSheet, tractor.x, tractor.y, nil, 3.5)
-
     -- Draw score and time
     love.graphics.setColor(0, 0, 0)
     local font = love.graphics.newFont(20)
     love.graphics.setFont(font)
     love.graphics.print('score: ' .. points, 10, 10)
+
+    -- draw tractor
+    love.graphics.setColor(1, 1, 1)
+    love.graphics.draw(tractorCurrentImg, 200, 200, nil, 4)
 end
 
 return game
