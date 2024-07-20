@@ -3,19 +3,22 @@ local game = require("game")
 function love.load()
     -- Set default filter
     love.graphics.setDefaultFilter('nearest', 'nearest')
-    
+
     fruits.banana = love.graphics.newImage('assets/banana.png')
     fruits.grape = love.graphics.newImage('assets/grape.png')
     fruits.orange = love.graphics.newImage('assets/orange.png')
     fruits.tomato = love.graphics.newImage('assets/tomato.png')
-
-    tractor = love.graphics.newImage('assets/tractor_sheet.png')
 
     -- Load sounds
     game.eatSound = love.audio.newSource('assets/beep.mp3', 'static')
     game.squishSound = love.audio.newSource('assets/squish.mov', 'static')
 
     game.load()
+
+    -- Load the tractor spritesheet
+    tractorSpritesheet = love.graphics.newImage('assets/tractor_sheet.png')
+    local g = anim8.newGrid(25, 25, tractorSpritesheet:getWidth(), tractorSpritesheet:getHeight())
+    animation = anim8.newAnimation(g('1-4', 1), 0.1)
 
     startTime = love.timer.getTime()
 end
@@ -58,10 +61,17 @@ function love.update(dt)
     game.checkCollision()
 
     elapsedTime = love.timer.getTime() - startTime
+
+    -- tractor
+    animation:update(dt)
 end
 
 function love.draw()
     game.draw()
 
     love.graphics.print(string.format('time: %.2f', elapsedTime), (windowX / 2) - 70, 10)
+
+    -- tractor
+    love.graphics.setColor(1, 1, 1)
+    animation:draw(tractorSpritesheet, 100, 100)
 end
