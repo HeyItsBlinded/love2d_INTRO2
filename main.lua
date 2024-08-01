@@ -57,14 +57,25 @@ function love.update(dt)
 
     elapsedTime = love.timer.getTime() - startTime
 
+    -- Game window edge detection
+    if tractor.x >= (windowX - 100) then tractor.x = windowX - 100 end
+    if tractor.x <= 0 then tractor.x = 0 end
+    if tractor.y >= (windowY - 90) then tractor.y = windowY - 90 end
+    if tractor.y <= -10 then tractor.y = -10 end
+
+    -- Tractor arrow movement
     if love.keyboard.isDown('up') then
-        tractorCurrentImg = tractorImg.up
+        tractor.y = tractor.y - tractor.speed * dt
+        tractor.currentImg = tractorImg.up
     elseif love.keyboard.isDown('down') then
-        tractorCurrentImg = tractorImg.down
-    elseif  love.keyboard.isDown('left') then
-        tractorCurrentImg = tractorImg.left
+        tractor.y = tractor.y + tractor.speed * dt
+        tractor.currentImg = tractorImg.down
+    elseif love.keyboard.isDown('left') then
+        tractor.x = tractor.x - tractor.speed * dt
+        tractor.currentImg = tractorImg.left
     elseif love.keyboard.isDown('right') then
-        tractorCurrentImg = tractorImg.right
+        tractor.x = tractor.x + tractor.speed * dt
+        tractor.currentImg = tractorImg.right
     end
 end
 

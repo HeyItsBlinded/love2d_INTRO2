@@ -41,6 +41,7 @@ function game.load()
     }
     player.anim = player.animations.down
 
+    -- Initialize tractor
     tractorImg = {
         up = love.graphics.newImage('assets/tractorUP.png'),
         down = love.graphics.newImage('assets/tractorDOWN.png'),
@@ -48,6 +49,13 @@ function game.load()
         right = love.graphics.newImage('assets/tractorRIGHT.png')
     }
     tractorCurrentImg = tractorImg.left
+
+    tractor = {
+        x = 100,
+        y = 100,
+        speed = 200,
+        currentImg = tractorImg.down
+    }
 
     -- Initialize fruitX, fruitY
     game.resetBanana()
@@ -183,7 +191,7 @@ function game.draw()
 
     -- draw tractor
     love.graphics.setColor(1, 1, 1)
-    love.graphics.draw(tractorCurrentImg, 200, 200, nil, 4)
+    love.graphics.draw(tractor.currentImg, tractor.x, tractor.y, nil, 4)
 end
 
 return game
