@@ -17,6 +17,14 @@ function love.load()
     game.load()
 
     startTime = love.timer.getTime()
+
+    -- Cooldown functionality
+    cooldownTime = 5
+    cooldown = 0
+    isCooldown = false
+
+     -- Tomato functionality
+     tomatoPositions = {}
 end
 
 function love.update(dt)
@@ -79,18 +87,26 @@ function love.update(dt)
         tractor.currentImg = tractorImg.right
     end
 
-    -- TEMP Tomato generation
-    -- tomatoBool = false
-    -- if love.keyboard.isDown('space') then
-    --     tomatoBool = true
-    -- end
+    -- Cooldown functionality
+    if isCooldown then
+        cooldown = cooldown - dt
+        if cooldown <= 0 then
+            isCooldown = false
+            cooldown = 0
+        end
+    end
 end
 
 tomatoBool = false
 
 function love.keypressed(key)
-    if key == 'space' then
-        tomatoBool = true
+    if key == 'space' and not isCooldown then
+        -- tomatoBool = true
+
+        table.insert(tomatoPositions, {x = tractor.x, y = tractor.y})
+
+        isCooldown = true
+        cooldown = cooldownTime
     end
 end
 
@@ -101,12 +117,20 @@ function love.draw()
     love.graphics.print(string.format('time: %.2f', elapsedTime), (windowX / 2) - 70, 10)
 
     -- TEMP Tomato generation
-    if tomatoBool then
-        love.graphics.setColor(1, 1, 1)
-        love.graphics.draw(fruits.tomato, 400, 400, nil, 2.5)
+    love.graphics.setColor(1, 1, 1)
+    for _, pos in ipairs(tomatoPositions) do
+        love.graphics.draw(fruits.tomato, pos.x, pos.y, nil, 2.5)
     end
-    -- if tomatoBool == true then
+    -- if tomatoBool then
     --     love.graphics.setColor(1, 1, 1)
-    --     love.graphics.draw(fruits.tomato, 400, 400, nil, 2.5)
+    --     love.graphics.draw(fruits.tomato, tractor.x, tractor.y, nil, 2.5)
     -- end
+    
+    -- Cooldown functionality
+    if isCooldown then
+        love.graphics.setColor(0, 0, 0)
+        love.graphics.print('cooldown: ' .. string.format("%.2f", cooldown), 800, 10)
+    else
+        love.graphics.print('action ready', 800, 10)
+    end
 end

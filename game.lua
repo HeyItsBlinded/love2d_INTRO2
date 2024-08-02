@@ -57,7 +57,6 @@ function game.load()
     game.resetBanana()
     game.resetGrape()
     game.resetOrange()
-    -- game.resetTomato()
 end
 
 local minDistance = 100 
@@ -79,8 +78,7 @@ function generateValidCoords()
         isTooClose(x, y, player.x, player.y) or
         isTooClose(x, y, bananaX, bananaY) or
         isTooClose(x, y, grapeX, grapeY) or
-        isTooClose(x, y, orangeX, orangeY) -- or
-        -- isTooClose(x, y, tomatoX, tomatoY)
+        isTooClose(x, y, orangeX, orangeY) 
     )
     return x, y 
 
