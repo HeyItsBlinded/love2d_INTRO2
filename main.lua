@@ -7,6 +7,7 @@ function love.load()
     fruits.banana = love.graphics.newImage('assets/banana.png')
     fruits.grape = love.graphics.newImage('assets/grape.png')
     fruits.orange = love.graphics.newImage('assets/orange.png')
+
     fruits.tomato = love.graphics.newImage('assets/tomato.png')
 
     -- Load sounds
@@ -77,6 +78,20 @@ function love.update(dt)
         tractor.x = tractor.x + tractor.speed * dt
         tractor.currentImg = tractorImg.right
     end
+
+    -- TEMP Tomato generation
+    -- tomatoBool = false
+    -- if love.keyboard.isDown('space') then
+    --     tomatoBool = true
+    -- end
+end
+
+tomatoBool = false
+
+function love.keypressed(key)
+    if key == 'space' then
+        tomatoBool = true
+    end
 end
 
 function love.draw()
@@ -84,4 +99,14 @@ function love.draw()
 
     love.graphics.setColor(0, 0, 0)
     love.graphics.print(string.format('time: %.2f', elapsedTime), (windowX / 2) - 70, 10)
+
+    -- TEMP Tomato generation
+    if tomatoBool then
+        love.graphics.setColor(1, 1, 1)
+        love.graphics.draw(fruits.tomato, 400, 400, nil, 2.5)
+    end
+    -- if tomatoBool == true then
+    --     love.graphics.setColor(1, 1, 1)
+    --     love.graphics.draw(fruits.tomato, 400, 400, nil, 2.5)
+    -- end
 end

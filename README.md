@@ -37,8 +37,10 @@ done: fruit load-in (actually, for real, including tomatoes)
 </br>
 to-do: balancing and qol edits
 
-### 7.19.24
-
+### 8.1.24
+done: tractor movement
+</br>
+to-do: 
 
 <!-- 
 untitled fruit-picking game

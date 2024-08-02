@@ -18,10 +18,6 @@ local bananaX, bananaY = -100, -100
 local grapeX, grapeY = -100, -100
 local orangeX, orangeY = -100, -100
 
--- local tomatoX, tomatoY = -100, -100
--- local tomatoSpeed = 100
--- local tomatoDirection = 1 -- 1 for right, -1 for left
-
 function game.load()
     love.window.setMode(windowX, windowY)
 
@@ -53,7 +49,7 @@ function game.load()
     tractor = {
         x = 100,
         y = 100,
-        speed = 200,
+        speed = 150,
         currentImg = tractorImg.down
     }
 
@@ -102,17 +98,7 @@ function game.resetOrange()
     orangeX, orangeY = generateValidCoords()
 end
 
--- function game.resetTomato()
---     tomatoX, tomatoY = generateValidCoords()
--- end
-
 function game.update(dt)
-    -- tomatoX = tomatoX + tomatoSpeed * tomatoDirection * dt
-
-    -- if tomatoX <= 0 or tomatoX >= windowX - 65 then
-    --     tomatoDirection = -tomatoDirection
-    -- end
-
     game.checkCollision()
 end
 
@@ -178,7 +164,9 @@ function game.draw()
     love.graphics.draw(fruits.banana, bananaX, bananaY, nil, 2.5)
     love.graphics.draw(fruits.grape, grapeX, grapeY, nil, 2.5)
     love.graphics.draw(fruits.orange, orangeX, orangeY, nil, 2.5)
-    -- love.graphics.draw(fruits.tomato, tomatoX, tomatoY, nil, 2.5)
+
+    -- Draw tomato
+    -- love.graphics.draw(fruits.tomato, 400, 400, nil, 2.5)
 
     -- Draw player
     player.anim:draw(player.spriteSheet, player.x, player.y, nil, 5)
@@ -195,3 +183,8 @@ function game.draw()
 end
 
 return game
+
+--[[ Tomato projected methodology
+if space key pressed --> place tomato at tractor location + begin 5 sec cooldown
+if cooldown done --> resume functionality - else - disable functionality
+]]
