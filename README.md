@@ -37,7 +37,7 @@ done: fruit load-in (actually, for real, including tomatoes)
 </br>
 to-do: balancing and qol edits
 
-### 8.1.24
+### 8.1.24 - 8.2.24
 done: tractor movement
 </br>
 to-do: 

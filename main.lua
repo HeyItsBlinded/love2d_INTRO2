@@ -103,7 +103,7 @@ function love.keypressed(key)
     if key == 'space' and not isCooldown then
         -- tomatoBool = true
 
-        table.insert(tomatoPositions, {x = tractor.x, y = tractor.y})
+        table.insert(tomatoPositions, {x = tractor.x + 18, y = tractor.y + 20})
 
         isCooldown = true
         cooldown = cooldownTime
