@@ -139,6 +139,19 @@ function game.checkCollision()
         game.resetOrange()
     end
 
+    for i = #tomatoPositions, 1, -1 do
+        local tomato = tomatoPositions[i]
+        local tomatoLeft = tomato.x + 35
+        local tomatoRight = tomato.x + 35
+        local tomatoTop = tomato.y + 35
+        local tomatoBottom = tomato.y + 35
+
+        if (playerRight > tomatoLeft) and (playerLeft < tomatoRight) and (playerBottom > tomatoTop) and (playerTop < tomatoBottom) then
+            points = points - 4
+            game.squishSound:play()
+            table.remove(tomatoPositions, i)
+        end
+    end
     -- local tomatoLeft = tomatoX + 35
     -- local tomatoRight = tomatoX + 35
     -- local tomatoTop = tomatoY + 35
