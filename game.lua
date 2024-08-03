@@ -47,8 +47,8 @@ function game.load()
     tractorCurrentImg = tractorImg.left
 
     tractor = {
-        x = 100,
-        y = 100,
+        x = (windowX / 2) - 50,
+        y = (windowY / 2) - 200,
         speed = 150,
         currentImg = tractorImg.down
     }

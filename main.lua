@@ -101,7 +101,6 @@ tomatoBool = false
 
 function love.keypressed(key)
     if key == 'space' and not isCooldown then
-        -- tomatoBool = true
 
         table.insert(tomatoPositions, {x = tractor.x + 18, y = tractor.y + 20})
 
@@ -116,15 +115,11 @@ function love.draw()
     love.graphics.setColor(0, 0, 0)
     love.graphics.print(string.format('time: %.2f', elapsedTime), (windowX / 2) - 70, 10)
 
-    -- TEMP Tomato generation
+    -- Tomato generation
     love.graphics.setColor(1, 1, 1)
     for _, pos in ipairs(tomatoPositions) do
         love.graphics.draw(fruits.tomato, pos.x, pos.y, nil, 2.5)
     end
-    -- if tomatoBool then
-    --     love.graphics.setColor(1, 1, 1)
-    --     love.graphics.draw(fruits.tomato, tractor.x, tractor.y, nil, 2.5)
-    -- end
     
     -- Cooldown functionality
     if isCooldown then
